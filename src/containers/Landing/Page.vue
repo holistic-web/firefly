@@ -1,9 +1,11 @@
 <template>
 	<div class="Landing">
 
-		<app-loader class="Landing__loader"/>
+		<section class="App__inner pt-3">
 
-		<spotify-search/>
+			<spotify-search/>
+
+		</section>
 
 	</div>
 </template>
@@ -25,7 +27,6 @@ export default {
 
 .Landing {
 	position: relative;
-	background-image: url('https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8ccfcc13bfcdfca6f54a8e043ffbe075&auto=format&fit=crop&w=1290&q=80');
 	background-size: cover;
 	background-position: center;
 	min-height: calc(100vh);
