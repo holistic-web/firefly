@@ -7,7 +7,9 @@
 		</b-link>
 
 		<section class="Header__auth App--center">
-			<span
+			<b-link
+				to="account"
+				class="Header__link"
 				v-if="user"
 				v-text="user.email"/>
 
@@ -64,7 +66,7 @@ $textColour: $White;
 	background: $backgroundColour;
 	height: $headerHeight;
 	position: fixed;
-	color: $textColour;
+	color: $textColour !important;
 	width: 100%;
 	z-index: 10;
 
@@ -78,6 +80,10 @@ $textColour: $White;
 
 	&__auth {
 		right: 0;
+	}
+
+	&__link {
+		color: $textColour !important;
 	}
 
 }
