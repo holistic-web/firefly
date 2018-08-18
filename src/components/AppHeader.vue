@@ -3,7 +3,7 @@
 	<div class="App__inner App__inner--fullHeight">
 
 		<b-link to="/">
-			<h1 class="Header__title App--center">test</h1>
+			<h1 class="Header__title App--center">Firefly Music Player</h1>
 		</b-link>
 
 		<section class="Header__auth App--center">
