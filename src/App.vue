@@ -23,7 +23,7 @@ export default {
 	},
 	methods: {
 		...mapActions({
-			initSpotifyApi: 'spotify/init'
+			initSpotifyApi: 'spotify/authorize'
 		})
 	},
 	created() {
