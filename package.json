@@ -17,7 +17,7 @@
 		"iex-api": "0.0.3",
 		"isomorphic-fetch": "^2.2.1",
 		"js-cookie": "^2.2.0",
-		"spotify": "^0.3.0",
+		"node-spotify-api": "^1.0.7",
 		"vue": "2.5.16",
 		"vue-router": "3.0.1",
 		"vuex": "3.0.1",
