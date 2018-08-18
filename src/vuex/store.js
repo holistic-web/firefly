@@ -13,6 +13,9 @@ const firebaseConfig = {
 	messagingSenderId: '820401474248'
 };
 
+// Set Facebook as our authentication provider
+const provider = new firebase.auth.GoogleAuthProvider();
+
 // Create a persisted state cookie
 const vuexCookie = new VuexPersistence({
 	restoreState: key => Cookies.getJSON(key),
@@ -28,7 +31,8 @@ const db = app.database();
 const store = {
 	state: {
 		firebase,
-		db
+		db,
+		provider
 	},
 	modules: {
 		auth: authStore

@@ -15,12 +15,12 @@ export default {
 		}
 	},
 	actions: {
-		async createUser({ rootState }, { email, password }) {
-			const result = await rootState.firebase.auth().createUserWithEmailAndPassword(email, password);
-			return result;
-		},
-		async signIn({ commit, rootState }, { email, password }) {
-			const result = await rootState.firebase.auth().signInWithEmailAndPassword(email, password);
+		// async createUser({ rootState }, { email, password }) {
+		// 	const result = await rootState.firebase.auth().createUserWithEmailAndPassword(email, password);
+		// 	return result;
+		// },
+		async signIn({ commit, rootState }) {
+			const result = await rootState.firebase.auth().signInWithRedirect(rootState.provider);
 			const user = result.user;
 			commit('SET_USER', user);
 			return result;
