@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import AppHeader from './components/AppHeader';
 import AppFooter from './components/AppFooter';
 
@@ -19,6 +20,14 @@ export default {
 	components: {
 		AppHeader,
 		AppFooter
+	},
+	methods: {
+		...mapActions({
+			initSpotifyApi: 'spotify/init'
+		})
+	},
+	created() {
+		this.initSpotifyApi();
 	}
 };
 </script>

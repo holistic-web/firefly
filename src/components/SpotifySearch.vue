@@ -43,8 +43,7 @@ export default {
 		}),
 		async fetch() {
 			this.fetchResults({
-				type: 'track',
-				query: this.searchTerm
+				queryTerm: this.searchTerm
 			});
 		}
 	}
