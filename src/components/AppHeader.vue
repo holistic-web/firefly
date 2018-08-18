@@ -7,12 +7,6 @@
 		</b-link>
 
 		<section class="Header__auth App--center">
-			<b-button
-				v-if="!user"
-				v-text="'Create Account'"
-				@click="onCreateAccountButtonClick"
-				variant="primary--outline"/>
-
 			<span
 				v-if="user"
 				v-text="user.email"/>
@@ -23,34 +17,14 @@
 				variant="primary--outline"/>
 		</section>
 
-		<sign-in-modal
-			:visible="isSignInModalVisible"
-			@hidden="onSignUpModalClose"/>
-
-		<create-account-modal
-			:visible="isCreateAccountModalVisible"
-			@hidden="onCreateAccountModalClose"/>
-
 	</div>
 </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import SignInModal from './SignIn.modal';
-import CreateAccountModal from './CreateAccount.modal';
 
 export default {
-	components: {
-		SignInModal,
-		CreateAccountModal
-	},
-	data() {
-		return {
-			isSignInModalVisible: false,
-			isCreateAccountModalVisible: false
-		};
-	},
 	computed: {
 		...mapGetters({
 			user: 'auth/user'
@@ -62,23 +36,16 @@ export default {
 	},
 	methods: {
 		...mapActions({
+			signIn: 'auth/signIn',
 			signOut: 'auth/signOut'
 		}),
-		onSignUpModalClose() {
-			this.isSignInModalVisible = false;
-		},
-		onCreateAccountModalClose() {
-			this.isCreateAccountModalVisible = false;
-		},
+
 		onAuthButtonClick() {
 			if (this.user) {
 				this.signOut();
 			} else {
-				this.isSignInModalVisible = true;
+				this.signIn();
 			}
-		},
-		onCreateAccountButtonClick() {
-			this.isCreateAccountModalVisible = true;
 		}
 	}
 
