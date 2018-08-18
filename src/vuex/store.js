@@ -5,13 +5,13 @@ import authStore from './modules/authStore';
 
 // Firebase connection. Since this info is public it's important to have security rules set.
 const firebaseConfig = {
-    apiKey: "AIzaSyAPBoH31ojiPCc8BrgbSKTKN5Deg354KD8",
-    authDomain: "firefly-5d179.firebaseapp.com",
-    databaseURL: "https://firefly-5d179.firebaseio.com",
-    projectId: "firefly-5d179",
-    storageBucket: "firefly-5d179.appspot.com",
-    messagingSenderId: "820401474248"
-  };;
+	apiKey: 'AIzaSyAPBoH31ojiPCc8BrgbSKTKN5Deg354KD8',
+	authDomain: 'firefly-5d179.firebaseapp.com',
+	databaseURL: 'https://firefly-5d179.firebaseio.com',
+	projectId: 'firefly-5d179',
+	storageBucket: 'firefly-5d179.appspot.com',
+	messagingSenderId: '820401474248'
+};
 
 // Create a persisted state cookie
 const vuexCookie = new VuexPersistence({
