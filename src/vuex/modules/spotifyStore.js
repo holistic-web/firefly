@@ -2,8 +2,6 @@
  * Spotify module
  * 	- works with Spotfy npm package https://www.npmjs.com/package/spotify-web-api-js
  */
-
-import axios from 'axios';
 import SpotifyWebApi from 'spotify-web-api-js';
 
 const spotifyApi = new SpotifyWebApi();
