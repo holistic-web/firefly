@@ -3,15 +3,19 @@
 
 		<app-loader class="Landing__loader"/>
 
+		<spotify-search/>
+
 	</div>
 </template>
 
 <script>
 import AppLoader from '../../components/AppLoader';
+import SpotifySearch from '../../components/SpotifySearch';
 
 export default {
 	components: {
-		AppLoader
+		AppLoader,
+		SpotifySearch
 	}
 };
 </script>
