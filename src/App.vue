@@ -89,6 +89,8 @@ $footerHeight: $Footer-Height;
 		padding-top: $headerHeight;
 		min-height: calc(100vh - #{$footerHeight});
 		background: $backgroundColour;
+		float: left;
+		width: 100%;
 	}
 
 	&--center {

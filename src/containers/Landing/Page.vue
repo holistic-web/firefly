@@ -1,11 +1,8 @@
 <template>
 	<div class="Landing">
 
-		<section class="App__inner pt-3">
+		<spotify-search class="mt-3"/>
 
-			<spotify-search/>
-
-		</section>
 
 	</div>
 </template>

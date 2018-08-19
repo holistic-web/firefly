@@ -1,9 +1,11 @@
 <template>
 	<section class="Spotify">
 
-		<search-input
-			label="Spotify track search"
-			@submit="onSearch"/>
+		<section class="App__inner">
+			<search-input
+				label="Spotify track search"
+				@submit="onSearch"/>
+		</section>
 
 		<b-card
 			class="Spotify__resultCard"
@@ -16,6 +18,15 @@
 					:href="result.preview_url"
 					target="_blank"
 					v-text="'Preview'"/>
+
+				<iframe
+					v-if="isAlbum(result)"
+					:src="getAlbumPlayerSrc(result.album)"
+					width="300"
+					height="380"
+					frameborder="0"
+					allowtransparency="true"
+					allow="encrypted-media"/>
 
 			</b-card>
 
@@ -54,6 +65,14 @@ export default {
 		onSearch(searchTerm) {
 			this.searchTerm = searchTerm;
 			this.fetch();
+		},
+		isAlbum(result) {
+			if (!result) return false;
+			return !!result.album;
+		},
+		getAlbumPlayerSrc(album) {
+			const id = album.id;
+			return `https://open.spotify.com/embed/album/${id}`;
 		}
 	}
 };
