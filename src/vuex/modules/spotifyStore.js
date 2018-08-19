@@ -27,8 +27,6 @@ export default {
 			path += '&client_id=10de6a8d8aec44aaa4d8c5a03c85be88';
 			path += '&redirect_uri=http://localhost:3000';
 			window.location.replace(path);
-			// #TODO: move this to a .env file and reset for security...
-			// spotifyApi.setAccessToken('f0787962b898434eaafad7e60c297488');
 		},
 		async fetchResults({ commit }, { queryTerm }) {
 			const limit = 20;
