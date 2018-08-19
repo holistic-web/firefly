@@ -29,8 +29,7 @@ export default {
 			window.location.replace(path);
 		},
 		async fetchResults({ commit }, { queryTerm }) {
-			const limit = 20;
-			const results = await spotifyApi.searchTracks({ queryTerm, limit });
+			const results = await spotifyApi.searchTracks(queryTerm);
 			commit('SET_RESULTS', results.tracks.items);
 			return results;
 		},

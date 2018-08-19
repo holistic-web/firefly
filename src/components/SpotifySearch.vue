@@ -18,7 +18,20 @@
 				v-text="'Search'"/>
 		</section>
 
-		{{results}}
+		<b-card
+			class="Spotify__resultCard"
+			v-for="result in results"
+			:key="result.id"
+			:title="result.name"
+			:img-src="result.album.images[0].url">
+
+				<b-link
+					:href="result.preview_url"
+					target="_blank"
+					v-text="'Preview'"/>
+
+			</b-card>
+
 
 	</section>
 </template>
@@ -42,9 +55,10 @@ export default {
 			fetchResults: 'spotify/fetchResults'
 		}),
 		async fetch() {
-			this.fetchResults({
+			await this.fetchResults({
 				queryTerm: this.searchTerm
 			});
+			console.log(this.results);
 		}
 	}
 };
@@ -62,6 +76,17 @@ export default {
 	&__searchButton {
 		float: right;
 		margin-top: 2rem;
+	}
+
+	&__resultCard {
+		width: 20%;
+		margin: 30px 2.5%;
+		float: left;
+	}
+
+	&__resultImage {
+		width: 50%;
+		float: left;
 	}
 }
 
