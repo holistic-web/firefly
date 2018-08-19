@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import AppHeader from './components/AppHeader';
 import AppFooter from './components/AppFooter';
 
@@ -21,13 +21,30 @@ export default {
 		AppHeader,
 		AppFooter
 	},
+	computed: {
+		...mapGetters({
+			token: 'spotify/token'
+		})
+	},
 	methods: {
 		...mapActions({
-			initSpotifyApi: 'spotify/authorize'
+			initSpotifyApi: 'spotify/authorize',
+			setSpotifyToken: 'spotify/setToken'
 		})
 	},
 	created() {
-		this.initSpotifyApi();
+		if (this.$route.path.includes('access_token')) {
+			// remove query string
+			let index = this.$route.path.indexOf('access_token');
+			let token = this.$route.path.substring(index + 13);
+			// remove extra params
+			index = token.indexOf('&token');
+			token = token.substring(0, index);
+			this.setSpotifyToken(token);
+			this.$router.push({ path: '/' });
+		} else if (!this.token) {
+			this.initSpotifyApi();
+		}
 	}
 };
 </script>
