@@ -1,22 +1,9 @@
 <template>
 	<section class="Spotify">
 
-		<section class="Spotify__search">
-			<b-form-group
-				class="Spotify__searchTerm"
-				description="Spotify track search"
-				label="Enter a searchphrase"
-				label-for="spotifySearchTerm">
-				<b-form-input
-					id="spotifySearchTerm"
-					v-model.trim="searchTerm"/>
-			</b-form-group>
-			<b-button
-				class="Spotify__searchButton"
-				variant="outline-primary"
-				@click="fetch"
-				v-text="'Search'"/>
-		</section>
+		<search-input
+			label="Spotify track search"
+			@submit="onSearch"/>
 
 		<b-card
 			class="Spotify__resultCard"
@@ -38,8 +25,12 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import SearchInput from './SearchInput';
 
 export default {
+	components: {
+		SearchInput
+	},
 	data() {
 		return {
 			searchTerm: null
@@ -59,6 +50,10 @@ export default {
 				queryTerm: this.searchTerm
 			});
 			console.log(this.results);
+		},
+		onSearch(searchTerm) {
+			this.searchTerm = searchTerm;
+			this.fetch();
 		}
 	}
 };
