@@ -11,7 +11,7 @@
 			<b-card
 				class="Youtube__result"
 				v-for="result in results"
-				:key="result.id"
+				:key="result._id"
 				:title="result.name">
 
 				<!-- #Todo: replace below iframe with youtube preview iframe https://www.w3schools.com/html/html_youtube.asp -->
@@ -22,6 +22,7 @@
 					frameborder="0"
 					allowtransparency="true"
 					allow="encrypted-media"/>
+
 			</b-card>
 		</section>
 
@@ -45,13 +46,13 @@ export default {
 	computed: {
 		...mapGetters({
 			// #Todo: update to use getter from youtube store
-			results: 'spotify/results'
+			results: 'youtube/results'
 		})
 	},
 	methods: {
 		...mapActions({
 			// #Todo: update to use action from youtube store
-			fetchResults: 'spotify/fetchResults'
+			fetchResults: 'youtube/fetchResults'
 		}),
 		async fetch() {
 			await this.fetchResults({

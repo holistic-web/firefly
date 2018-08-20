@@ -1,16 +1,15 @@
 /**
- * Spotify module
- * 	- works with Spotfy npm package https://www.npmjs.com/package/spotify-web-api-js
+ * Youtube module
+ * 	- works with Youtube npm package https://www.npmjs.com/package/youtube-api-v3-search
  */
-import SpotifyWebApi from 'spotify-web-api-js';
-
-const spotifyApi = new SpotifyWebApi();
+import youtubeSearch from 'youtube-api-v3-search';
 
 export default {
 	namespaced: true,
 	state: {
 		results: [],
-		token: null
+		// #Todo: disable this key and move to a secure location
+		token: 'AIzaSyCBSeq7wRNRQQYZnxZGYt35P-6-yHvwXIg'
 	},
 	mutations: {
 		SET_RESULTS(state, results) {
@@ -30,16 +29,20 @@ export default {
 			window.location.replace(path);
 		},
 		async fetchResults({ state, commit }, { queryTerm }) {
-			await spotifyApi.setAccessToken(state.token);
-			const results = await spotifyApi.searchTracks(queryTerm);
-			const items = results.tracks.items.map(i => {
-				i._id = i.id;
+			const results = await youtubeSearch(state.token, {
+				q: queryTerm,
+				type: 'video',
+				part: 'snippet'
+			});
+			const items = results.items.map(i => {
+				i._id = i.etag;
 				return i;
 			});
+			console.log(items);
 			commit('SET_RESULTS', items);
+			return results;
 		},
 		async setToken({ commit }, token) {
-			await spotifyApi.setAccessToken(token);
 			commit('SET_TOKEN', token);
 		}
 	},
