@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import VuexPersistence from 'vuex-persist';
 import authStore from './modules/authStore';
 import spotifyStore from './modules/spotifyStore';
+import youtubeStore from './modules/youtubeStore';
 
 // Firebase connection. Since this info is public it's important to have security rules set.
 const firebaseConfig = {
@@ -40,7 +41,8 @@ const store = {
 	},
 	modules: {
 		auth: authStore,
-		spotify: spotifyStore
+		spotify: spotifyStore,
+		youtube: youtubeStore
 	},
 	plugins: [
 		vuexCookie.plugin

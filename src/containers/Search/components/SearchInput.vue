@@ -8,7 +8,8 @@
 			label-for="searchTerm">
 			<b-form-input
 				id="searchTerm"
-				v-model.trim="searchTerm"/>
+				v-model.trim="searchTerm"
+				@keyup.enter.prevent="submit"/>
 		</b-form-group>
 
 		<b-button
@@ -45,6 +46,8 @@ export default {
 <style lang="scss">
 
 .Search {
+	float: left;
+	width: 100%;
 
 	&__term {
 		display: inline-block;

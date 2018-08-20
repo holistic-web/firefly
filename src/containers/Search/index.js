@@ -3,7 +3,7 @@ import Page from './Page';
 
 const routes = [
 	{
-		name: 'landing.page',
+		name: 'Search.page',
 		path: '/',
 		component: Page
 	}
