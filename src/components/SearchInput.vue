@@ -8,7 +8,8 @@
 			label-for="searchTerm">
 			<b-form-input
 				id="searchTerm"
-				v-model.trim="searchTerm"/>
+				v-model.trim="searchTerm"
+				@keyup.enter.prevent="submit"/>
 		</b-form-group>
 
 		<b-button
