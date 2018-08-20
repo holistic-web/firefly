@@ -39,7 +39,6 @@ export default {
 				i.youtubeItem = true;
 				return i;
 			});
-			console.log(items);
 			commit('SET_RESULTS', items);
 			return results;
 		},

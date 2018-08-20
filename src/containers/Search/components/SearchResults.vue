@@ -59,8 +59,8 @@ $frameWidth: $Frame-Width;
 	float: left;
 
 	&__result {
-		width: 23%;
-		margin: 30px 1%;
+		width: 100%;
+		margin: 30px;
 		display: inline-block;
 
 		@media all and (max-width: $frameWidth) {
