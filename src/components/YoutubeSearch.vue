@@ -1,18 +1,20 @@
 <template>
-	<section class="Spotify">
+	<section class="Youtube">
 
-		<section class="Spotify__search App__inner">
+		<section class="Youtube__search App__inner">
 			<search-input
-				label="Spotify track search"
+				label="Youtube track search"
 				@submit="onSearch"/>
 		</section>
 
-		<section class="Spotify__results">
+		<section class="Youtube__results">
 			<b-card
-				class="Spotify__result"
+				class="Youtube__result"
 				v-for="result in results"
 				:key="result.id"
 				:title="result.name">
+
+				<!-- #Todo: replace below iframe with youtube preview iframe https://www.w3schools.com/html/html_youtube.asp -->
 				<iframe
 					:src="getPlayerSrc(result.id)"
 					width="220"
@@ -59,7 +61,8 @@ export default {
 			this.fetch();
 		},
 		getPlayerSrc(id) {
-			return `https://open.spotify.com/embed/track/${id}`;
+			// #Todo: write out correct string to generate link for youtube iframe
+			return `https://open.youtube.com/embed/track/${id}`;
 		}
 	}
 };
@@ -70,7 +73,7 @@ export default {
 
 $frameWidth: $Frame-Width;
 
-.Spotify {
+.Youtube {
 	float: left;
 	width: 100%;
 

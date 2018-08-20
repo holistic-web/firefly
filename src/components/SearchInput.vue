@@ -45,6 +45,8 @@ export default {
 <style lang="scss">
 
 .Search {
+	float: left;
+	width: 100%;
 
 	&__term {
 		display: inline-block;
