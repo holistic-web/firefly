@@ -29,7 +29,8 @@ export default {
 			// path += '&redirect_uri=http://firefly-player.s3-website.eu-west-2.amazonaws.com';
 			window.location.replace(path);
 		},
-		async fetchResults({ commit }, { queryTerm }) {
+		async fetchResults({ state, commit }, { queryTerm }) {
+			await spotifyApi.setAccessToken(state.token);
 			const results = await spotifyApi.searchTracks(queryTerm);
 			commit('SET_RESULTS', results.tracks.items);
 			return results;
