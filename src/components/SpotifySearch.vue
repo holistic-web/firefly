@@ -14,7 +14,7 @@
 			:title="result.name"
 			:img-src="result.album.images[0].url">
 
-				<b-link
+		 		<b-link
 					:href="result.preview_url"
 					target="_blank"
 					v-text="'Preview'"/>

@@ -23,7 +23,10 @@ const vuexCookie = new VuexPersistence({
 	saveState: (key, state) => Cookies.set(key, state, {
 		expires: 3
 	}),
-	modules: ['auth'] // only save user module
+	modules: [
+		'auth',
+		'spotify'
+	]
 });
 
 const app = firebase.initializeApp(firebaseConfig);
