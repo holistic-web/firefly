@@ -1,28 +1,45 @@
 <template>
 	<section class="Results">
 
-		<b-card
-			class="Result__result"
+		<section
 			v-for="result in results"
+			class="Results__result"
+			:class="{
+				'Results__result--spotify': result.spotifyItem,
+				'Results__result--youtube': result.youtubeItem,
+			}"
 			:key="result._id"
-			:title="result.name">
+			no-body>
 
-			<iframe
-				v-if="result.spotifyItem"
-				:src="getSpotifyPlayerSrc(result.id)"
-				width="220"
-				height="80"
-				frameborder="0"
-				allowtransparency="true"
-				allow="encrypted-media"/>
+			<h3
+				class="Results__title"
+				v-text="getTitle(result)"/>
 
-			<iframe
-				v-if="result.youtubeItem"
-				:src="getYoutubePlayerSrc(result)"
-				width="220"
-				height="80"/>
+			<b-button
+				v-b-toggle="getCollapseId(result)"
+				variant="primary"
+				v-text="'Play Now'"/>
 
-		</b-card>
+			<b-collapse :id="getCollapseId(result)">
+				<b-card>
+					<b-embed
+						type="iframe"
+						:src="getPlayerSrc(result)"
+						width="220"
+						height="80"
+						frameborder="0"
+						allow="encrypted-media"
+						allowtransparency
+						allowfullscreen/>
+				</b-card>
+			</b-collapse>
+
+			<b-img
+				class="Results__thumb"
+				:src="getThumbnail(result)"
+				thumbnail/>
+
+		</section>
 
 	</section>
 </template>
@@ -36,13 +53,34 @@ export default {
 		}
 	},
 	methods: {
-		getSpotifyPlayerSrc(id) {
-			// #Todo: write out correct string to generate link for youtube iframe
-			return `https://open.spotify.com/embed/track/${id}`;
+		getTitle(item) {
+			if (item.spotifyItem) return item.name;
+			if (item.youtubeItem) return item.snippet.title;
+			return false;
 		},
-		getYoutubePlayerSrc(result) {
-			const id = result.id.videoId;
-			return `https://www.youtube.com/embed/${id}`;
+		getCollapseId(item) {
+			const id = item._id;
+			return `collapse_${id}`;
+		},
+		getPlayerSrc(item) {
+			if (item.spotifyItem) {
+				const id = item.id;
+				return `https://open.spotify.com/embed/track/${id}`;
+			}
+			if (item.youtubeItem) {
+				const id = item.id.videoId;
+				return `https://www.youtube.com/embed/${id}`;
+			}
+			return false;
+		},
+		getThumbnail(item) {
+			if (item.spotifyItem) {
+				return item.album.images[0].url;
+			}
+			if (item.youtubeItem) {
+				return item.snippet.thumbnails.high.url;
+			}
+			return false;
 		}
 	}
 };
@@ -52,6 +90,7 @@ export default {
 @import '../../../settings';
 
 $frameWidth: $Frame-Width;
+$themeColour: $Theme-Colour;
 
 .Results {
 	width: 100%;
@@ -60,13 +99,23 @@ $frameWidth: $Frame-Width;
 
 	&__result {
 		width: 100%;
-		margin: 30px;
-		display: inline-block;
+		display: block;
+		float: left;
+		padding: 1rem;
+		background-image: linear-gradient(to bottom right, #{$themeColour}, transparent);
 
-		@media all and (max-width: $frameWidth) {
-			width: 48%;
-			margin: 30px 1%;
+		&--spotify {
+			background-image: linear-gradient(to bottom right, #1db954, transparent);
 		}
+
+		&--youtube {
+			background-image: linear-gradient(to bottom right, #ff0000, transparent);
+		}
+	}
+
+	&__thumb {
+		float: right;
+		height: 80px;;
 	}
 }
 

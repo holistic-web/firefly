@@ -33,11 +33,12 @@ export default {
 			try {
 				await spotifyApi.setAccessToken(state.token);
 				const results = await spotifyApi.searchTracks(queryTerm);
-				const items = results.tracks.items.map(i => {
+				let items = results.tracks.items.map(i => {
 					i._id = i.id;
 					i.spotifyItem = true;
 					return i;
 				});
+				items = items.splice(0, 5);
 				commit('SET_RESULTS', items);
 			} catch (err) {
 				dispatch('authorize');
