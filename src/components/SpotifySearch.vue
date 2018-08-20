@@ -1,34 +1,28 @@
 <template>
 	<section class="Spotify">
 
-		<section class="App__inner">
+		<section class="Spotify__search App__inner">
 			<search-input
 				label="Spotify track search"
 				@submit="onSearch"/>
 		</section>
 
-		<b-card
-			class="Spotify__resultCard"
-			v-for="result in results"
-			:key="result.id"
-			:title="result.name"
-			:img-src="result.album.images[0].url">
-
-		 		<b-link
-					:href="result.preview_url"
-					target="_blank"
-					v-text="'Preview'"/>
-
+		<section class="Spotify__results">
+			<b-card
+				class="Spotify__result"
+				v-for="result in results"
+				:key="result.id"
+				:title="result.name">
 				<iframe
 					v-if="isAlbum(result)"
-					:src="getAlbumPlayerSrc(result.album)"
-					width="300"
-					height="380"
+					:src="getPlayerSrc(result.id)"
+					width="220"
+					height="80"
 					frameborder="0"
 					allowtransparency="true"
 					allow="encrypted-media"/>
-
 			</b-card>
+		</section>
 
 
 	</section>
@@ -70,37 +64,37 @@ export default {
 			if (!result) return false;
 			return !!result.album;
 		},
-		getAlbumPlayerSrc(album) {
-			const id = album.id;
-			return `https://open.spotify.com/embed/album/${id}`;
+		getPlayerSrc(id) {
+			return `https://open.spotify.com/embed/track/${id}`;
 		}
 	}
 };
 </script>
 
 <style lang="scss">
+@import '../settings';
+
+$frameWidth: $Frame-Width;
 
 .Spotify {
 
-	&__searchTerm {
+	&__search {
+		display: block;
+	}
+
+	&__results {
+		display: block;
+	}
+
+	&__result {
+		width: 23%;
+		margin: 30px 1%;
 		display: inline-block;
-		width: 80%;
-	}
 
-	&__searchButton {
-		float: right;
-		margin-top: 2rem;
-	}
-
-	&__resultCard {
-		width: 20%;
-		margin: 30px 2.5%;
-		float: left;
-	}
-
-	&__resultImage {
-		width: 50%;
-		float: left;
+		@media all and (max-width: $frameWidth) {
+			width: 48%;
+			margin: 30px 1%;
+		}
 	}
 }
 
