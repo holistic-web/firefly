@@ -35,6 +35,7 @@ export default {
 				const results = await spotifyApi.searchTracks(queryTerm);
 				const items = results.tracks.items.map(i => {
 					i._id = i.id;
+					i.spotifyItem = true;
 					return i;
 				});
 				commit('SET_RESULTS', items);

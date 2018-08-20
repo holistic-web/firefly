@@ -8,12 +8,19 @@
 			:title="result.name">
 
 			<iframe
+				v-if="result.spotifyItem"
 				:src="getSpotifyPlayerSrc(result.id)"
 				width="220"
 				height="80"
 				frameborder="0"
 				allowtransparency="true"
 				allow="encrypted-media"/>
+
+			<iframe
+				v-if="result.youtubeItem"
+				:src="getYoutubePlayerSrc(result)"
+				width="220"
+				height="80"/>
 
 		</b-card>
 
@@ -32,18 +39,24 @@ export default {
 		getSpotifyPlayerSrc(id) {
 			// #Todo: write out correct string to generate link for youtube iframe
 			return `https://open.spotify.com/embed/track/${id}`;
+		},
+		getYoutubePlayerSrc(result) {
+			const id = result.id.videoId;
+			return `https://www.youtube.com/embed/${id}`;
 		}
 	}
 };
 </script>
 
 <style lang="scss">
-@import '../settings';
+@import '../../../settings';
 
 $frameWidth: $Frame-Width;
 
 .Results {
+	width: 100%;
 	display: block;
+	float: left;
 
 	&__result {
 		width: 23%;

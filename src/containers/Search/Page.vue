@@ -1,29 +1,65 @@
 <template>
-	<div class="Landing">
+	<div class="Search">
 
-		<section class="Landing__half">
-			<spotify-search/>
-		</section>
-		<section class="Landing__half Landing__half--grey">
-			<youtube-search/>
+		<section class="Search__content App__inner">
+			<search-input
+				label="Search for a song!"
+				@submit="onSearch"/>
 		</section>
 
+		<search-results :results="results"/>
 
 	</div>
 </template>
 
 <script>
-import AppLoader from '../../components/AppLoader';
-import SpotifySearch from '../../components/SpotifySearch';
-import YoutubeSearch from '../../components/YoutubeSearch';
+import { mapGetters, mapActions } from 'vuex';
+import SearchInput from './components/SearchInput';
+import SearchResults from './components/SearchResults';
 
 export default {
 	components: {
-		AppLoader,
-		SpotifySearch,
-		YoutubeSearch
+		SearchInput,
+		SearchResults
+	},
+	data() {
+		return {
+			searchTerm: null
+		};
+	},
+	computed: {
+		...mapGetters({
+			spotifyResults: 'spotify/results',
+			youtubeResults: 'youtube/results'
+		}),
+		results() {
+			const results = [
+				...this.youtubeResults,
+				...this.spotifyResults
+			];
+			return results;
+		}
+	},
+	methods: {
+		...mapActions({
+			fetchSpotifyResults: 'spotify/fetchResults',
+			fetchYoutubeResults: 'youtube/fetchResults'
+		}),
+		async fetch() {
+			await Promise.all([
+				this.fetchSpotifyResults({
+					queryTerm: this.searchTerm
+				}),
+				this.fetchYoutubeResults({
+					queryTerm: this.searchTerm
+				})
+			]);
+		},
+		onSearch(searchTerm) {
+			this.searchTerm = searchTerm;
+			this.fetch();
+		}
 	}
-
 };
 </script>
 
@@ -32,20 +68,11 @@ export default {
 
 $youtubeRed: $Danger-Colour;
 
-.Landing {
+.Search {
 	position: relative;
-	background-size: cover;
-	background-position: center;
-	min-height: calc(100vh);
 
-	&__half {
-		float: left;
-		width: 48%;
-		margin: 60px 1%;
-
-		&--grey {
-			background: $youtubeRed;
-		}
+	&__content {
+		margin-top: 3rem;
 	}
 
 }

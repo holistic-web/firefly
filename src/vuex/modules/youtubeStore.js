@@ -36,6 +36,7 @@ export default {
 			});
 			const items = results.items.map(i => {
 				i._id = i.etag;
+				i.youtubeItem = true;
 				return i;
 			});
 			console.log(items);
