@@ -11,16 +11,18 @@
 		"lint": "eslint --ext .js,.vue src test/unit/specs"
 	},
 	"dependencies": {
+		"axios": "^0.18.0",
 		"bootstrap": "4.1.1",
 		"bootstrap-vue": "2.0.0-rc.11",
-		"vue": "2.5.16",
 		"firebase": "^5.2.0",
+		"iex-api": "0.0.3",
+		"isomorphic-fetch": "^2.2.1",
 		"js-cookie": "^2.2.0",
+		"spotify-web-api-js": "^0.24.0",
+		"vue": "2.5.16",
 		"vue-router": "3.0.1",
 		"vuex": "3.0.1",
-		"vuex-persist": "^1.4.3",
-		"iex-api": "0.0.3",
-		"isomorphic-fetch": "^2.2.1"
+		"vuex-persist": "^1.4.3"
 	},
 	"devDependencies": {
 		"@babel/cli": "7.0.0-beta.51",

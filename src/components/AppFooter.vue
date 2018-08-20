@@ -21,6 +21,8 @@ $textColour: $White;
 	height: $footerHeight;
 	background: $backgroundColour;
 	color: $textColour;
+	float: left;
+	width: 100%;
 
 	&__inner {
 		padding-top: 0.8em;
