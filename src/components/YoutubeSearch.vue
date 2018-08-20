@@ -15,13 +15,10 @@
 				:title="result.name">
 
 				<!-- #Todo: replace below iframe with youtube preview iframe https://www.w3schools.com/html/html_youtube.asp -->
-				<iframe
-					:src="getPlayerSrc(result.id)"
-					width="220"
-					height="80"
-					frameborder="0"
-					allowtransparency="true"
-					allow="encrypted-media"/>
+				<iframe width="220" height="80"
+				src="https://www.youtube.com/embed/hIGq1A2yy3s">
+				</iframe>
+
 
 			</b-card>
 		</section>
