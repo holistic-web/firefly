@@ -25,7 +25,7 @@ export default {
 			let path = 'https://accounts.spotify.com/authorize';
 			path += '?response_type=token';
 			path += '&client_id=10de6a8d8aec44aaa4d8c5a03c85be88';
-			path += '&redirect_uri=http://localhost:3000';
+			path += '&redirect_uri=http://localhost:3001';
 			// path += '&redirect_uri=http://firefly-player.s3-website.eu-west-2.amazonaws.com';
 			window.location.replace(path);
 		},

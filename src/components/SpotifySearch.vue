@@ -14,7 +14,6 @@
 				:key="result.id"
 				:title="result.name">
 				<iframe
-					v-if="isAlbum(result)"
 					:src="getPlayerSrc(result.id)"
 					width="220"
 					height="80"
@@ -54,15 +53,10 @@ export default {
 			await this.fetchResults({
 				queryTerm: this.searchTerm
 			});
-			console.log(this.results);
 		},
 		onSearch(searchTerm) {
 			this.searchTerm = searchTerm;
 			this.fetch();
-		},
-		isAlbum(result) {
-			if (!result) return false;
-			return !!result.album;
 		},
 		getPlayerSrc(id) {
 			return `https://open.spotify.com/embed/track/${id}`;
