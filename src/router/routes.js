@@ -1,9 +1,17 @@
-import landingRoutes from '../containers/Landing';
+import searchRoutes from '../containers/Search';
 import accountRoutes from '../containers/Account';
 
 const routes = [
-	...landingRoutes,
-	...accountRoutes
+	...searchRoutes,
+	...accountRoutes,
+	{
+		path: '/',
+		redirect: '/search'
+	},
+	{
+		path: '*',
+		redirect: '/'
+	}
 ];
 
 export default routes;

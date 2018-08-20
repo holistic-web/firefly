@@ -7,22 +7,7 @@
 				@submit="onSearch"/>
 		</section>
 
-		<section class="Spotify__results">
-			<b-card
-				class="Spotify__result"
-				v-for="result in results"
-				:key="result.id"
-				:title="result.name">
-				<iframe
-					:src="getPlayerSrc(result.id)"
-					width="220"
-					height="80"
-					frameborder="0"
-					allowtransparency="true"
-					allow="encrypted-media"/>
-			</b-card>
-		</section>
-
+		<search-results :results="results"/>
 
 	</section>
 </template>
@@ -30,10 +15,12 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import SearchInput from './SearchInput';
+import SearchResults from './SearchResults';
 
 export default {
 	components: {
-		SearchInput
+		SearchInput,
+		SearchResults
 	},
 	data() {
 		return {

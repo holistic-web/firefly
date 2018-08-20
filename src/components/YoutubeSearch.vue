@@ -22,6 +22,7 @@
 
 			</b-card>
 		</section>
+		<search-results :results="results"/>
 
 
 	</section>
@@ -30,10 +31,12 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import SearchInput from './SearchInput';
+import SearchResults from './SearchResults';
 
 export default {
 	components: {
-		SearchInput
+		SearchInput,
+		SearchResults
 	},
 	data() {
 		return {
@@ -42,13 +45,11 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-			// #Todo: update to use getter from youtube store
 			results: 'youtube/results'
 		})
 	},
 	methods: {
 		...mapActions({
-			// #Todo: update to use action from youtube store
 			fetchResults: 'youtube/fetchResults'
 		}),
 		async fetch() {
