@@ -44,11 +44,13 @@ export default {
 	},
 	computed: {
 		...mapGetters({
+			// #Todo: update to use getter from youtube store
 			results: 'spotify/results'
 		})
 	},
 	methods: {
 		...mapActions({
+			// #Todo: update to use action from youtube store
 			fetchResults: 'spotify/fetchResults'
 		}),
 		async fetch() {
