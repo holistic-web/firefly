@@ -30,13 +30,17 @@ export default {
 			window.location.replace(path);
 		},
 		async fetchResults({ state, commit }, { queryTerm }) {
-			await spotifyApi.setAccessToken(state.token);
-			const results = await spotifyApi.searchTracks(queryTerm);
-			const items = results.tracks.items.map(i => {
-				i._id = i.id;
-				return i;
-			});
-			commit('SET_RESULTS', items);
+			try {
+				await spotifyApi.setAccessToken(state.token);
+				const results = await spotifyApi.searchTracks(queryTerm);
+				const items = results.tracks.items.map(i => {
+					i._id = i.id;
+					return i;
+				});
+				commit('SET_RESULTS', items);
+			} catch (err) {
+				console.log(err);
+			}
 		},
 		async setToken({ commit }, token) {
 			await spotifyApi.setAccessToken(token);
