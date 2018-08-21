@@ -1,45 +1,26 @@
 <template>
 	<section class="Results">
 
-		<section
-			v-for="result in results"
-			class="Results__result"
-			:class="{
-				'Results__result--spotify': result.spotifyItem,
-				'Results__result--youtube': result.youtubeItem,
-			}"
-			:key="result._id"
-			no-body>
+		<b-table
+			:items="results"
+			:fields="fields"
+			striped>
 
-			<h3
-				class="Results__title"
-				v-text="getTitle(result)"/>
+			<template slot="platform" slot-scope="data">
+				<b-img
+					class="Results__icon"
+					:src="getPlatformIconSrc(data.item.platform)"/>
+			</template>
 
-			<b-button
-				v-b-toggle="getCollapseId(result)"
-				variant="primary"
-				v-text="'Play Now'"/>
+			<template slot="actions" slot-scope="data">
+				<b-button
+					variant="primary"
+					v-text="'View Player'"
+					size="sm"
+					@click="onViewPlayerButtonClick(data.item)"/>
+			</template>
 
-			<b-collapse :id="getCollapseId(result)">
-				<b-card>
-					<b-embed
-						type="iframe"
-						:src="getPlayerSrc(result)"
-						width="220"
-						height="80"
-						frameborder="0"
-						allow="encrypted-media"
-						allowtransparency
-						allowfullscreen/>
-				</b-card>
-			</b-collapse>
-
-			<b-img
-				class="Results__thumb"
-				:src="getThumbnail(result)"
-				thumbnail/>
-
-		</section>
+		</b-table>
 
 	</section>
 </template>
@@ -52,15 +33,22 @@ export default {
 			required: true
 		}
 	},
+	data() {
+		return {
+			fields: [
+				{ key: 'title', label: 'Title', sortable: true },
+				{ key: 'album', label: 'Album', sortable: true },
+				{ key: 'artist', label: 'Artist', sortable: true },
+				{ key: 'platform', label: 'Platform', sortable: true },
+				{ key: 'actions', label: '' }
+			]
+		};
+	},
 	methods: {
-		getTitle(item) {
-			if (item.spotifyItem) return item.name;
-			if (item.youtubeItem) return item.snippet.title;
+		getPlatformIconSrc(platform) {
+			if (platform === 'spotify') return '/static/icons/spotify.svg';
+			if (platform === 'youtube') return '/static/icons/youtube.svg';
 			return false;
-		},
-		getCollapseId(item) {
-			const id = item._id;
-			return `collapse_${id}`;
 		},
 		getPlayerSrc(item) {
 			if (item.spotifyItem) {
@@ -81,6 +69,9 @@ export default {
 				return item.snippet.thumbnails.high.url;
 			}
 			return false;
+		},
+		onViewPlayerButtonClick(item) {
+			this.$emit('play', item);
 		}
 	}
 };
@@ -90,7 +81,6 @@ export default {
 @import '../../../settings';
 
 $frameWidth: $Frame-Width;
-$themeColour: $Theme-Colour;
 
 .Results {
 	width: 100%;
@@ -102,15 +92,10 @@ $themeColour: $Theme-Colour;
 		display: block;
 		float: left;
 		padding: 1rem;
-		background-image: linear-gradient(to bottom right, #{$themeColour}, transparent);
+	}
 
-		&--spotify {
-			background-image: linear-gradient(to bottom right, #1db954, transparent);
-		}
-
-		&--youtube {
-			background-image: linear-gradient(to bottom right, #ff0000, transparent);
-		}
+	&__icon {
+		width: 30px;
 	}
 
 	&__thumb {

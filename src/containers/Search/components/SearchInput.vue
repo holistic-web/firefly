@@ -1,22 +1,39 @@
 <template>
-	<section class="Search">
+	<section class="SearchInput">
 
-		<b-form-group
-			class="Search__term"
-			description="Enter a searchphrase"
-			:label="label"
-			label-for="searchTerm">
-			<b-form-input
-				id="searchTerm"
-				v-model.trim="searchTerm"
-				@keyup.enter.prevent="submit"/>
-		</b-form-group>
+		<div class="SearchInput__inputs">
+			<b-form-group
+				class="SearchInput__term"
+				:label="label"
+				label-for="searchTerm">
+				<b-form-input
+					id="searchTerm"
+					v-model.trim="searchTerm"
+					@keydown.enter.native="submit"/>
+			</b-form-group>
+			<b-button
+				class="SearchInput__button"
+				variant="outline-primary"
+				@click="submit"
+				v-text="'Search'"/>
+		</div>
 
-		<b-button
-			class="Search__button"
-			variant="outline-primary"
-			@click="submit"
-			v-text="'Search'"/>
+		<div class="SearchInput__badges">
+			<span>Currently Supports:</span>
+			<b-badge
+				variant="danger"
+				href="https://www.youtube.com/"
+				target="_blank">
+				Youtube
+			</b-badge>
+			<b-badge
+				variant="success"
+				href="https://www.spotify.com/"
+				target="_blank">
+				Spotify
+			</b-badge>
+		</div>
+
 
 	</section>
 </template>
@@ -44,19 +61,35 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../../../settings';
 
-.Search {
-	float: left;
-	width: 100%;
+$searchTermWidth: 200px;
+
+.SearchInput {
+
+	&__inputs {
+		float: left;
+		min-width: $searchTermWidth + 64px;
+		width: 100%;
+	}
 
 	&__term {
-		display: inline-block;
-		width: 80%;
+		float: left;
+		width: 100%;
+		min-width: $searchTermWidth;
 	}
 
 	&__button {
-		float: right;
-		margin-top: 2rem;
+		float: left;
+		clear: both;
+	}
+
+	&__badges {
+		position: absolute;
+		left: 10px;
+		top: -100%;
+		-webkit-transform: rotate(5deg);
+		transform: rotate(11deg);
 	}
 
 }

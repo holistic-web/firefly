@@ -1,13 +1,33 @@
 <template>
 	<div class="Search">
 
-		<section class="Search__content App__inner">
+		<section class="Search__input">
+
+			<b-link
+				class="Search__title"
+				href="https://github.com/holistic-web/firefly"
+				target="_blank">
+				<p>A <code>Holistics</code> project</p>
+			</b-link>
+
 			<search-input
-				label="Search for a song!"
+				class="Search__textBox"
+				label="Search for a song"
 				@submit="onSearch"/>
+
+
 		</section>
 
-		<search-results :results="results"/>
+		<section class="Search__results">
+
+			<search-results
+				:class="{ 'Search--withPlayer': playing }"
+				:results="results"
+				@play="onPlay"/>
+
+		</section>
+
+		<player :track="playing"/>
 
 	</div>
 </template>
@@ -16,65 +36,42 @@
 import { mapGetters, mapActions } from 'vuex';
 import SearchInput from './components/SearchInput';
 import SearchResults from './components/SearchResults';
-
-/**
- * Shuffles array in place. -- https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
- * @param {Array} a items An array containing the items.
- */
-function shuffle(a) {
-	let j;
-	let	x;
-	let i;
-	for (i = a.length - 1; i > 0; i--) {
-		j = Math.floor(Math.random() * (i + 1));
-		x = a[i];
-		a[i] = a[j];
-		a[j] = x;
-	}
-	return a;
-}
+import Player from './components/Player';
 
 export default {
 	components: {
 		SearchInput,
-		SearchResults
+		SearchResults,
+		Player
 	},
 	data() {
 		return {
-			searchTerm: null
+			searchTerm: null,
+			playing: null
 		};
 	},
 	computed: {
 		...mapGetters({
-			spotifyResults: 'spotify/results',
-			youtubeResults: 'youtube/results'
-		}),
-		results() {
-			const results = [
-				...this.youtubeResults,
-				...this.spotifyResults
-			];
-			return shuffle(results);
-		}
+			user: 'auth/user',
+			results: 'search/results'
+		})
 	},
 	methods: {
 		...mapActions({
-			fetchSpotifyResults: 'spotify/fetchResults',
-			fetchYoutubeResults: 'youtube/fetchResults'
+			fetchSearchResults: 'search/fetchResults'
 		}),
 		async fetch() {
-			await Promise.all([
-				this.fetchSpotifyResults({
-					queryTerm: this.searchTerm
-				}),
-				this.fetchYoutubeResults({
-					queryTerm: this.searchTerm
-				})
-			]);
+			await this.fetchSearchResults({
+				queryTerm: this.searchTerm
+			});
+
 		},
 		onSearch(searchTerm) {
 			this.searchTerm = searchTerm;
 			this.fetch();
+		},
+		onPlay(track) {
+			this.playing = track;
 		}
 	}
 };
@@ -83,13 +80,48 @@ export default {
 <style lang="scss">
 @import '../../settings';
 
-$youtubeRed: $Danger-Colour;
+$textColour: $Text-Colour;
 
 .Search {
-	position: relative;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
 
-	&__content {
-		margin-top: 3rem;
+	&__title {
+		margin: 2rem;
+		color: $textColour !important;
+		float: left;
+
+		&:hover {
+			text-decoration: none !important;
+		}
+	}
+
+	&__input {
+		width: 35%;
+		height: 100%;
+		border-right: 1px dashed $textColour;
+		position: relative;
+		display: inline-block;
+	}
+
+	&__textBox {
+		width: 80%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	&__results {
+		width: 64%;
+		height: 100%;
+		display: inline-block;
+		overflow: scroll;
+	}
+
+	&--withPlayer {
+		padding-bottom: 250px;
 	}
 
 }
