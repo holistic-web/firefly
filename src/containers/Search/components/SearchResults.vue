@@ -6,6 +6,19 @@
 			:fields="fields"
 			striped>
 
+			<template slot="platform" slot-scope="data">
+				<b-img
+					class="Results__icon"
+					:src="getPlatformIconSrc(data.item.platform)"/>
+			</template>
+
+			<template slot="actions" slot-scope="data">
+				<b-button
+					variant="primary"
+					v-text="'View Player'"
+					size="sm"/>
+			</template>
+
 		</b-table>
 
 		<!-- <section
@@ -64,14 +77,10 @@ export default {
 		};
 	},
 	methods: {
-		getTitle(item) {
-			if (item.spotifyItem) return item.name;
-			if (item.youtubeItem) return item.snippet.title;
+		getPlatformIconSrc(platform) {
+			if (platform === 'spotify') return '/static/icons/spotify.svg';
+			if (platform === 'youtube') return '/static/icons/youtube.svg';
 			return false;
-		},
-		getCollapseId(item) {
-			const id = item._id;
-			return `collapse_${id}`;
 		},
 		getPlayerSrc(item) {
 			if (item.spotifyItem) {
@@ -112,6 +121,10 @@ $frameWidth: $Frame-Width;
 		display: block;
 		float: left;
 		padding: 1rem;
+	}
+
+	&__icon {
+		width: 30px;
 	}
 
 	&__thumb {
