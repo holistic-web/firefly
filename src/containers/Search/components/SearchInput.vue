@@ -1,10 +1,9 @@
 <template>
-	<section class="Search">
+	<section class="SearchInput">
 
-		<div class="Search__inputs">
+		<div class="SearchInput__inputs">
 			<b-form-group
-				class="Search__term"
-				description="Enter a searchphrase"
+				class="SearchInput__term"
 				:label="label"
 				label-for="searchTerm">
 				<b-form-input
@@ -13,13 +12,13 @@
 					@keydown.enter.native="submit"/>
 			</b-form-group>
 			<b-button
-				class="Search__button"
+				class="SearchInput__button"
 				variant="outline-primary"
 				@click="submit"
 				v-text="'Search'"/>
 		</div>
 
-		<div class="Search__badges">
+		<div class="SearchInput__badges">
 			<span>Currently Supports:</span>
 			<b-badge
 				variant="danger"
@@ -64,37 +63,33 @@ export default {
 <style lang="scss">
 @import '../../../settings';
 
-$highlightColour: $Highlight-Colour;
+$searchTermWidth: 200px;
 
-$searchTermWidth: 400px;
-
-.Search {
-	float: left;
-	width: 100%;
+.SearchInput {
 
 	&__inputs {
 		float: left;
 		min-width: $searchTermWidth + 64px;
+		width: 100%;
 	}
 
 	&__term {
 		float: left;
-		width: 80%;
-		max-width: $searchTermWidth;
+		width: 100%;
+		min-width: $searchTermWidth;
 	}
 
 	&__button {
-		float: right;
-		margin-left: 1rem;
-		margin-top: 2rem;
+		float: left;
+		clear: both;
 	}
 
 	&__badges {
-		color: $highlightColour;
 		position: absolute;
-		left: 250px;
-		top: -20px;
-		transform: rotate(5deg);
+		left: 10px;
+		top: -100%;
+		-webkit-transform: rotate(5deg);
+		transform: rotate(11deg);
 	}
 
 }

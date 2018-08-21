@@ -1,13 +1,27 @@
 <template>
 	<div class="Search">
 
-		<section class="Search__content App__inner">
+		<section class="Search__input">
+
+			<b-link
+				class="Search__title"
+				href="https://github.com/holistic-web"
+				target="_blank">
+				<p>A <code>Holistics</code> project</p>
+			</b-link>
+
 			<search-input
-				label="Search for a song!"
+				class="Search__textBox"
+				label="Search for a song"
 				@submit="onSearch"/>
+
 		</section>
 
-		<search-results :results="results"/>
+		<section class="Search__results">
+
+			<search-results :results="results"/>
+
+		</section>
 
 	</div>
 </template>
@@ -67,13 +81,44 @@ export default {
 <style lang="scss">
 @import '../../settings';
 
-$youtubeRed: $Danger-Colour;
+$textColour: $Text-Colour;
 
 .Search {
-	position: relative;
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
 
-	&__content {
-		margin-top: 3rem;
+	&__title {
+		margin: 2rem;
+		color: $textColour !important;
+		float: left;
+
+		&:hover {
+			text-decoration: none !important;
+		}
+	}
+
+	&__input {
+		width: 35%;
+		height: 100%;
+		border-right: 1px dashed $textColour;
+		position: relative;
+		display: inline-block;
+	}
+
+	&__textBox {
+		width: 80%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	&__results {
+		width: 64%;
+		height: 100%;
+		display: inline-block;
+		overflow: scroll;
 	}
 
 }

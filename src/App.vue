@@ -1,26 +1,16 @@
 <template>
 	<div class="App">
 
-		<app-header/>
-
 		<router-view class="App__wrapper"/>
-
-		<app-footer/>
 
 	</div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import AppHeader from './components/AppHeader';
-import AppFooter from './components/AppFooter';
 
 export default {
 	name: 'App',
-	components: {
-		AppHeader,
-		AppFooter
-	},
 	computed: {
 		...mapGetters({
 			token: 'spotify/token'
@@ -86,7 +76,6 @@ $footerHeight: $Footer-Height;
 	}
 
 	&__wrapper {
-		padding-top: $headerHeight;
 		min-height: calc(100vh - #{$footerHeight});
 		background: $backgroundColour;
 		float: left;

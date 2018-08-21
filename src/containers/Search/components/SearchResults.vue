@@ -90,7 +90,6 @@ export default {
 @import '../../../settings';
 
 $frameWidth: $Frame-Width;
-$themeColour: $Theme-Colour;
 
 .Results {
 	width: 100%;
@@ -102,14 +101,11 @@ $themeColour: $Theme-Colour;
 		display: block;
 		float: left;
 		padding: 1rem;
-		background-image: linear-gradient(to bottom right, #{$themeColour}, transparent);
 
 		&--spotify {
-			background-image: linear-gradient(to bottom right, #1db954, transparent);
 		}
 
 		&--youtube {
-			background-image: linear-gradient(to bottom right, #ff0000, transparent);
 		}
 	}
 
