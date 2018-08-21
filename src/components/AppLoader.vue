@@ -8,7 +8,7 @@
 <style lang="scss">
 @import '../settings';
 
-$background: $Theme-Colour;
+$background: $Text-Colour;
 $highlight: $Highlight-Colour;
 
 $size: 120px;

@@ -6,14 +6,9 @@
 			:fields="fields"
 			striped>
 
-			<template slot="title" slot-scope="data">
-				<p
-					class="Results__title"
-					v-text="getTitle(data.item)"/>
-			</template>
 		</b-table>
 
-		<section
+		<!-- <section
 			v-for="result in results"
 			class="Results__result"
 			:key="result._id"
@@ -44,7 +39,7 @@
 				:src="getThumbnail(result)"
 				thumbnail/>
 
-		</section>
+		</section> -->
 
 	</section>
 </template>

@@ -4,7 +4,7 @@ import Page from './Page';
 const routes = [
 	{
 		name: 'Search.page',
-		path: '/',
+		path: '/listen',
 		component: Page
 	}
 ];

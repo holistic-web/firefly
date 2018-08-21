@@ -19,7 +19,8 @@
 
 		<section class="Search__results">
 
-			<search-results :results="results"/>
+			<search-results
+				:results="results"/>
 
 		</section>
 
@@ -28,7 +29,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import common from '../../lib/common';
 import SearchInput from './components/SearchInput';
 import SearchResults from './components/SearchResults';
 
@@ -44,31 +44,19 @@ export default {
 	},
 	computed: {
 		...mapGetters({
-			spotifyResults: 'spotify/results',
-			youtubeResults: 'youtube/results'
-		}),
-		results() {
-			const results = [
-				...this.youtubeResults,
-				...this.spotifyResults
-			];
-			return common.shuffle(results);
-		}
+			user: 'auth/user',
+			results: 'search/results'
+		})
 	},
 	methods: {
 		...mapActions({
-			fetchSpotifyResults: 'spotify/fetchResults',
-			fetchYoutubeResults: 'youtube/fetchResults'
+			fetchSearchResults: 'search/fetchResults'
 		}),
 		async fetch() {
-			await Promise.all([
-				this.fetchSpotifyResults({
-					queryTerm: this.searchTerm
-				}),
-				this.fetchYoutubeResults({
-					queryTerm: this.searchTerm
-				})
-			]);
+			await this.fetchSearchResults({
+				queryTerm: this.searchTerm
+			});
+
 		},
 		onSearch(searchTerm) {
 			this.searchTerm = searchTerm;

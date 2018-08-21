@@ -6,39 +6,6 @@
 	</div>
 </template>
 
-<script>
-import { mapGetters, mapActions } from 'vuex';
-
-export default {
-	name: 'App',
-	computed: {
-		...mapGetters({
-			token: 'spotify/token'
-		})
-	},
-	methods: {
-		...mapActions({
-			initSpotifyApi: 'spotify/authorize',
-			setSpotifyToken: 'spotify/setToken'
-		})
-	},
-	created() {
-		if (this.$route.path.includes('access_token')) {
-			// remove query string
-			let index = this.$route.path.indexOf('access_token');
-			let token = this.$route.path.substring(index + 13);
-			// remove extra params
-			index = token.indexOf('&token');
-			token = token.substring(0, index);
-			this.setSpotifyToken(token);
-			this.$router.push({ path: '/' });
-		} else if (!this.token) {
-			this.initSpotifyApi();
-		}
-	}
-};
-</script>
-
 <style lang="scss">
 @import './settings';
 
