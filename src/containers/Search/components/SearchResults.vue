@@ -22,39 +22,6 @@
 
 		</b-table>
 
-		<!-- <section
-			v-for="result in results"
-			class="Results__result"
-			:key="result._id"
-			no-body>
-
-
-			<b-button
-				v-b-toggle="getCollapseId(result)"
-				variant="primary"
-				v-text="'Play Now'"/>
-
-			<b-collapse :id="getCollapseId(result)">
-				<b-card>
-					<b-embed
-						type="iframe"
-						:src="getPlayerSrc(result)"
-						width="220"
-						height="80"
-						frameborder="0"
-						allow="encrypted-media"
-						allowtransparency
-						allowfullscreen/>
-				</b-card>
-			</b-collapse>
-
-			<b-img
-				class="Results__thumb"
-				:src="getThumbnail(result)"
-				thumbnail/>
-
-		</section> -->
-
 	</section>
 </template>
 

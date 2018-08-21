@@ -2,6 +2,7 @@
 	<section class="Player">
 
 		<b-embed
+			class="Player__frame"
 			v-if="track"
 			type="iframe"
 			:src="src"
@@ -18,7 +19,7 @@
  * Vue component to play songs within an Iframe. This can probably be drastically improved with a little research.
 
  */
-
+import { mapGetters } from 'vuex';
 
 export default {
 	props: {
@@ -27,6 +28,9 @@ export default {
 		}
 	},
 	computed: {
+		...mapGetters({
+			spotifyToken: 'auth/spotifyToken'
+		}),
 		src() {
 			if (!this.track) return false;
 			if (this.track.platform === 'spotify') return `https://open.spotify.com/embed/track/${this.track.id}`;
@@ -38,7 +42,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../settings';
 
 .Player {
 	width: 100%;

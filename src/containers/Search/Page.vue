@@ -15,11 +15,13 @@
 				label="Search for a song"
 				@submit="onSearch"/>
 
+
 		</section>
 
 		<section class="Search__results">
 
 			<search-results
+				:class="{ 'Search--withPlayer': playing }"
 				:results="results"
 				@play="onPlay"/>
 
@@ -116,6 +118,10 @@ $textColour: $Text-Colour;
 		height: 100%;
 		display: inline-block;
 		overflow: scroll;
+	}
+
+	&--withPlayer {
+		padding-bottom: 250px;
 	}
 
 }

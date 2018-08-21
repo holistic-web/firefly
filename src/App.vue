@@ -14,7 +14,6 @@ $backgroundColour: $Background-Colour;
 $dangerColour: $Danger-Colour;
 $fontFamily: $Font-Family;
 $frameWidth: $Frame-Width;
-$headerHeight: $Header-Height;
 $footerHeight: $Footer-Height;
 
 
