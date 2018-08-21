@@ -1,19 +1,24 @@
 <template>
 	<section class="Results">
 
+		<b-table
+			:items="results"
+			:fields="fields"
+			striped>
+
+			<template slot="title" slot-scope="data">
+				<p
+					class="Results__title"
+					v-text="getTitle(data.item)"/>
+			</template>
+		</b-table>
+
 		<section
 			v-for="result in results"
 			class="Results__result"
-			:class="{
-				'Results__result--spotify': result.spotifyItem,
-				'Results__result--youtube': result.youtubeItem,
-			}"
 			:key="result._id"
 			no-body>
 
-			<h3
-				class="Results__title"
-				v-text="getTitle(result)"/>
 
 			<b-button
 				v-b-toggle="getCollapseId(result)"
@@ -51,6 +56,17 @@ export default {
 			type: Array,
 			required: true
 		}
+	},
+	data() {
+		return {
+			fields: [
+				{ key: 'title', label: 'Title', sortable: true },
+				{ key: 'album', label: 'Album', sortable: true },
+				{ key: 'artist', label: 'Artist', sortable: true },
+				{ key: 'platform', label: 'Platform', sortable: true },
+				{ key: 'actions', label: '' }
+			]
+		};
 	},
 	methods: {
 		getTitle(item) {
@@ -101,12 +117,6 @@ $frameWidth: $Frame-Width;
 		display: block;
 		float: left;
 		padding: 1rem;
-
-		&--spotify {
-		}
-
-		&--youtube {
-		}
 	}
 
 	&__thumb {
