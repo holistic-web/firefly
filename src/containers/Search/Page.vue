@@ -5,7 +5,7 @@
 
 			<b-link
 				class="Search__title"
-				href="https://github.com/holistic-web"
+				href="https://github.com/holistic-web/firefly"
 				target="_blank">
 				<p>A <code>Holistics</code> project</p>
 			</b-link>
