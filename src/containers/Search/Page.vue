@@ -20,9 +20,12 @@
 		<section class="Search__results">
 
 			<search-results
-				:results="results"/>
+				:results="results"
+				@play="onPlay"/>
 
 		</section>
+
+		<player :track="playing"/>
 
 	</div>
 </template>
@@ -31,15 +34,18 @@
 import { mapGetters, mapActions } from 'vuex';
 import SearchInput from './components/SearchInput';
 import SearchResults from './components/SearchResults';
+import Player from './components/Player';
 
 export default {
 	components: {
 		SearchInput,
-		SearchResults
+		SearchResults,
+		Player
 	},
 	data() {
 		return {
-			searchTerm: null
+			searchTerm: null,
+			playing: null
 		};
 	},
 	computed: {
@@ -61,6 +67,9 @@ export default {
 		onSearch(searchTerm) {
 			this.searchTerm = searchTerm;
 			this.fetch();
+		},
+		onPlay(track) {
+			this.playing = track;
 		}
 	}
 };

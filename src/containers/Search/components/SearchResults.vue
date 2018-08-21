@@ -16,7 +16,8 @@
 				<b-button
 					variant="primary"
 					v-text="'View Player'"
-					size="sm"/>
+					size="sm"
+					@click="onViewPlayerButtonClick(data.item)"/>
 			</template>
 
 		</b-table>
@@ -101,6 +102,9 @@ export default {
 				return item.snippet.thumbnails.high.url;
 			}
 			return false;
+		},
+		onViewPlayerButtonClick(item) {
+			this.$emit('play', item);
 		}
 	}
 };
