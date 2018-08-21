@@ -9,7 +9,7 @@
 			<b-form-input
 				id="searchTerm"
 				v-model.trim="searchTerm"
-				@keyup.enter.prevent="submit"/>
+				@keydown.enter.native="submit"/>
 		</b-form-group>
 
 		<b-button
