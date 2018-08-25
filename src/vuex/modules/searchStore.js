@@ -58,8 +58,6 @@ export default {
 				);
 				commit('SET_RESULTS', results);
 			} catch (err) {
-				// eslint-disable-next-line no-console
-				console.error(err);
 				Spotify.initTokenRedirect();
 			}
 		}

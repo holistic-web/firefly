@@ -70,6 +70,7 @@ export default {
 	computed: {
 		...mapGetters({
 			user: 'auth/user',
+			spotifyToken: 'auth/spotifyToken',
 			results: 'search/results'
 		})
 	},
@@ -91,6 +92,11 @@ export default {
 		},
 		onPlay(track) {
 			this.playing = track;
+		}
+	},
+	watch: {
+		spotifyToken() {
+			if (this.spotifyToken) this.fetch();
 		}
 	}
 };
