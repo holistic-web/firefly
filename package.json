@@ -24,6 +24,7 @@
 		"spotify-web-api-js": "^0.24.0",
 		"vue": "2.5.16",
 		"vue-router": "3.0.1",
+		"vue-youtube-embed": "^2.2.1",
 		"vuex": "3.0.1",
 		"vuex-persist": "^1.4.3",
 		"youtube-api-v3-search": "^1.0.2"
