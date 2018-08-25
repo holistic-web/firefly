@@ -39,12 +39,8 @@
 
  */
 import { mapGetters } from 'vuex';
-import VueYouTubeEmbed from 'vue-youtube-embed';
 
 export default {
-	components: {
-		VueYouTubeEmbed
-	},
 	props: {
 		track: {
 			type: Object
