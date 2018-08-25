@@ -5,7 +5,7 @@ const spotifyApi = new SpotifyWebApi();
 
 export default {
 
-	initTokenRedirect: query => {
+	initTokenRedirect: () => {
 		let path = 'https://accounts.spotify.com/authorize';
 		path += '?response_type=token';
 		path += '&client_id=10de6a8d8aec44aaa4d8c5a03c85be88';
