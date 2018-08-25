@@ -30,7 +30,7 @@
 
 			<search-results
 				v-if="user"
-				:class="{ 'Search--withPlayer': playing }"
+				:class="{ 'Search--withPlayer': currentTrack }"
 				:results="results"
 				@play="onPlay"/>
 
@@ -44,7 +44,7 @@
 
 		</section>
 
-		<player :track="playing"/>
+		<player :track="currentTrack"/>
 
 	</div>
 </template>
@@ -64,7 +64,7 @@ export default {
 	data() {
 		return {
 			searchTerm: null,
-			playing: null
+			currentTrack: null
 		};
 	},
 	computed: {
@@ -91,7 +91,7 @@ export default {
 			this.fetch();
 		},
 		onPlay(track) {
-			this.playing = track;
+			this.currentTrack = track;
 		}
 	},
 	watch: {

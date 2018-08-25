@@ -74,6 +74,7 @@ export default {
 			this.$emit('play', item);
 		}
 	}
+
 };
 </script>
 

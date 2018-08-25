@@ -3,17 +3,23 @@
 		class="Player"
 		v-if="track">
 
-		<b-button
-			class="Player__play"
-			variant="outline-danger"
-			v-text="'Play'"
-			@click="play"/>
+		<section class="App__inner Player__inner">
+			<b-button
+				class="Player__play"
+				variant="outline-danger"
+				v-text="'Play'"
+				@click="play"/>
 
-		<b-button
-			class="Player__play"
-			variant="outline-danger"
-			v-text="'Pause'"
-			@click="pause"/>
+			<b-progress
+				class="Player__progress"
+				:value="80"/>
+
+			<b-button
+				class="Player__pause"
+				variant="outline-danger"
+				v-text="'Pause'"
+				@click="pause"/>
+		</section>
 
 		<youtube-media
 			v-if="isYoutube"
@@ -86,10 +92,34 @@ export default {
 	background: #fff;
 	bottom: 0;
 
+	&__inner {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 2;
+	}
+
 	&__frame {
 		position: absolute !important;
 		top: 250px !important;
 	}
+
+	&__play {
+		float: left;
+		width: 10%;
+	}
+
+	&__pause {
+		float: right;
+		width: 10%;
+	}
+
+	&__progress {
+		float: left;
+		width: 80%;
+	}
+
 }
 
 </style>

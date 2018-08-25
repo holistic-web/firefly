@@ -9,12 +9,16 @@ import Spotify from '../../lib/Spotify';
 export default {
 	namespaced: true,
 	state: {
-		isPlaying: false
+		isPlaying: false,
+		currentTrack: null
 	},
 	mutations: {
 		SET_IS_PLAYING(state, isPlaying) {
 			state.isPlaying = isPlaying;
 		}
+		// SET_CURRENT_TRACK(state, currentTrack) {
+		// 	state.currentTrack = currentTrack;
+		// }
 	},
 	actions: {
 		async play({ commit }) {
@@ -25,9 +29,13 @@ export default {
 			await Spotify.pause();
 			commit('SET_IS_PLAYING', false);
 		}
+		// setCurrentTrack({ commit }, track) {
+		// 	commit('SET_CURRENT_TRACK', track);
+		// }
 
 	},
 	getters: {
-		results: state => state.results
+		isPlaying: state => state.isPlaying,
+		currentTrack: state => state.currentTrack
 	}
 };
