@@ -11,6 +11,7 @@
 			</b-link>
 
 			<b-dropdown
+				v-if="user"
 				class="Search__user"
 				:text="user.displayName"
 				href="/#/account"

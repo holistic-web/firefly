@@ -8,6 +8,7 @@
 		"dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
 		"start": "nppm run dev",
 		"build": "node build/build.js",
+		"deploy": "node build/build.js && firebase deploy",
 		"lint": "eslint --ext .js,.vue src test/unit/specs"
 	},
 	"dependencies": {
