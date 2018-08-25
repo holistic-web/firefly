@@ -10,20 +10,36 @@
 				<p>A <code>Holistics</code> project</p>
 			</b-link>
 
+			<b-dropdown
+				class="Search__user"
+				:text="user.displayName"
+				href="/#/account"
+				split>
+				<b-dropdown-item @click="signOut">Log out</b-dropdown-item>
+			</b-dropdown>
+
 			<search-input
 				class="Search__textBox"
 				label="Search for a song"
 				@submit="onSearch"/>
-
 
 		</section>
 
 		<section class="Search__results">
 
 			<search-results
+				v-if="user"
 				:class="{ 'Search--withPlayer': playing }"
 				:results="results"
 				@play="onPlay"/>
+
+			<b-button
+				v-else
+				class="Search__login"
+				variant="primary"
+				v-text="'Sign In'"
+				size="lg"
+				@click="signIn"/>
 
 		</section>
 
@@ -58,7 +74,9 @@ export default {
 	},
 	methods: {
 		...mapActions({
-			fetchSearchResults: 'search/fetchResults'
+			fetchSearchResults: 'search/fetchResults',
+			signIn: 'auth/signIn',
+			signOut: 'auth/signOut'
 		}),
 		async fetch() {
 			await this.fetchSearchResults({
@@ -116,8 +134,21 @@ $textColour: $Text-Colour;
 	&__results {
 		width: 64%;
 		height: 100%;
-		display: inline-block;
 		overflow: scroll;
+		position: relative;
+		float: right;
+	}
+
+	&__login {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	&__user {
+		float: right;
+		margin: 1.5rem;
 	}
 
 	&--withPlayer {
