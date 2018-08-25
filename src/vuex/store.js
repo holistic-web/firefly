@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import VuexPersistence from 'vuex-persist';
 import authStore from './modules/authStore';
 import searchStore from './modules/searchStore';
+import playerStore from './modules/playerStore';
 
 // Firebase connection. Since this info is public it's important to have security rules set.
 const firebaseConfig = {
@@ -39,7 +40,8 @@ const store = {
 	},
 	modules: {
 		auth: authStore,
-		search: searchStore
+		search: searchStore,
+		player: playerStore
 	},
 	plugins: [
 		vuexCookie.plugin
