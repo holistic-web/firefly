@@ -4,24 +4,25 @@
 		v-if="track">
 
 		<b-button
-			class="Player_play"
+			class="Player__play"
 			variant="outline-danger"
-			@click="play"
-			v-text="'Play'"/>
+			v-text="'Play'"
+			@click="play"/>
 
 		<b-button
-			class="Player_play"
+			class="Player__play"
 			variant="outline-danger"
-			@click="pause"
-			v-text="'Pause'"/>
+			v-text="'Pause'"
+			@click="pause"/>
 
 		<youtube-media
+			v-if="isYoutube"
 			ref="youtubePlayer"
 			:video-id="src"/>
 
 		<b-embed
 			class="Player__frame"
-			v-if="track.platform !== 'youtube'"
+			v-if="isSpotify"
 			type="iframe"
 			:src="src"
 			frameborder="0"
