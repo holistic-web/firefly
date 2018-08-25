@@ -36,7 +36,9 @@
 <script>
 /**
  * Vue component to play songs within an Iframe. This can probably be drastically improved with a little research.
-
+ *
+ * Uses:
+ * 	-https://github.com/kaorun343/vue-youtube-embed to control youtube videos
  */
 import { mapGetters } from 'vuex';
 
