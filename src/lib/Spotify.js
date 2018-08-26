@@ -42,23 +42,7 @@ export default {
 			volume: 0.5
 		});
 		const result = player.connect();
-		console.log(player);
-		console.log(result);
 		return result;
-	},
-
-	play: async () => {
-		// #Todo: implement spotify play pause
-		// Make a global store to manage player state (playing, play/pause methods, including queues)
-		const playBackState = spotifyApi.getMyCurrentPlaybackState();
-		console.log(playBackState);
-		spotifyApi.play();
-	},
-
-	pause: async () => {
-		// #Todo: implement spotify play pause
-		// Make a global store to manage player state (playing, play/pause methods, including queues)
-		console.log(spotifyApi);
 	},
 
 	getDevices: async () => {

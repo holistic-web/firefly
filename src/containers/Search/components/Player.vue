@@ -20,11 +20,11 @@
 				v-text="'Pause'"
 				@click="pause"/>
 
-			<b-button
+			<!-- <b-button
 				class="Player__createPlayer"
 				variant="outline-success"
 				v-text="'Create Player'"
-				@click="create"/>
+				@click="create"/> -->
 		</section>
 
 		<youtube-media
@@ -87,10 +87,11 @@ export default {
 		pause() {
 			if (this.isYoutube) this.$refs.youtubePlayer.player.pauseVideo();
 			if (this.isSpotify) Spotify.pause();
-		},
-		create() {
-			Spotify.createPlayer(this.spotifyToken);
 		}
+		// create() {
+		// 	// attempt to create a spotify player stream, doesnt seem to work.
+		// 	Spotify.createPlayer(this.spotifyToken);
+		// }
 	}
 };
 </script>
