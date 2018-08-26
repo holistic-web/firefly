@@ -1,6 +1,10 @@
 /**
  * Player module
  *
+ * !!! CURRENTLY UNUSED
+ * we are keeping the play / pause logic in Player.vue
+ * going forward.
+ *
  * Will store playlist queue and control the global play / pause functions
  */
 import Spotify from '../../lib/Spotify';
