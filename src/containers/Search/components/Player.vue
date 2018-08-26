@@ -48,6 +48,7 @@
  * 	-https://github.com/kaorun343/vue-youtube-embed to control youtube videos
  */
 import { mapGetters } from 'vuex';
+import Spotify from '../../../lib/Spotify';
 
 export default {
 	props: {
@@ -75,9 +76,11 @@ export default {
 	methods: {
 		play() {
 			if (this.isYoutube) this.$refs.youtubePlayer.player.playVideo();
+			if (this.isSpotify) Spotify.play();
 		},
 		pause() {
 			if (this.isYoutube) this.$refs.youtubePlayer.player.pauseVideo();
+			if (this.isSpotify) Spotify.pause();
 		}
 	}
 };
@@ -100,10 +103,10 @@ export default {
 		z-index: 2;
 	}
 
-	&__frame {
-		position: absolute !important;
-		top: 250px !important;
-	}
+	// &__frame {
+	// 	position: absolute !important;
+	// 	top: 250px !important;
+	// }
 
 	&__play {
 		float: left;
