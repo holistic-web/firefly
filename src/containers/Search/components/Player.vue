@@ -19,6 +19,12 @@
 				variant="outline-danger"
 				v-text="'Pause'"
 				@click="pause"/>
+
+			<b-button
+				class="Player__createPlayer"
+				variant="outline-success"
+				v-text="'Create Player'"
+				@click="create"/>
 		</section>
 
 		<youtube-media
@@ -81,6 +87,9 @@ export default {
 		pause() {
 			if (this.isYoutube) this.$refs.youtubePlayer.player.pauseVideo();
 			if (this.isSpotify) Spotify.pause();
+		},
+		create() {
+			Spotify.createPlayer(this.spotifyToken);
 		}
 	}
 };
@@ -102,11 +111,6 @@ export default {
 		transform: translate(-50%, -50%);
 		z-index: 2;
 	}
-
-	// &__frame {
-	// 	position: absolute !important;
-	// 	top: 250px !important;
-	// }
 
 	&__play {
 		float: left;
