@@ -15,7 +15,7 @@ const firebaseConfig = {
 	messagingSenderId: '820401474248'
 };
 
-// Set Facebook as our authentication provider
+// Set Google as our authentication provider
 const provider = new firebase.auth.GoogleAuthProvider();
 
 // Create a persisted state cookie
